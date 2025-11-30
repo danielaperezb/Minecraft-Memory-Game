@@ -14,7 +14,3 @@ The primary goal was to transform a familiar aesthetic (the iconic Minecraft pix
 
 * **UI/UX:** Design Strategy, Interaction Flows, Visual Language Adaptation.
 * **Front-End:** HTML, CSS, Vanilla JavaScript (used for game logic and DOM manipulation).
-
----
-
-## 📸 Screenshots & Live Demo
