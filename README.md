@@ -1,14 +1,15 @@
 
 # 🕹️ Interactive Prototyping Case Study: Minecraft Memory Game UI
 
-This project is an **Interactive Prototyping Case Study** that demonstrates core principles of **UI/UX Design** and Front-End development.
+This project is an **Interactive Prototyping Case Study** showcasing core principles of **UI/UX design and Front-End Development** through the creation of a classic memory game inspired by the iconic Minecraft aesthetic.
 
 ## 🎯 Project Goal
 
-The primary goal was to transform a familiar aesthetic (the iconic Minecraft pixel art) into a highly usable and engaging interface for a classic memory game. The design focus was placed on two key UX aspects:
+The goal was to transform a familiar aesthetic (the iconic Minecraft pixel art) into a highly usable and engaging interface for a classic memory game. The design focus was placed on two key UX aspects:
 
-1.  **Clear Feedback:** Ensuring immediate visual feedback upon user interaction (card selection, matching success, errors).
-2.  **Visual Communication:** Adapting a complex visual style (pixel art) into a clean, functional interface that reduces cognitive load.
+1.  **Clear Feedback:** Providing immediate visual responses to user actions, such as card flips, successful matches, and errors.
+2.  **Visual Communication:** Adapting a visually dense, pixel-based art style into a simplified interface that remains readable and reduces cognitive load.
+
 
 ## 🛠️ Technology & Skills
 
