@@ -1,0 +1,325 @@
+/* Importar la fuente pixelada de Minecraft */
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+/* Colores de estilo Minecraft */
+:root {
+    --mc-green-dark: #6a8c4c;    /* Verde oscuro de bloques (Tierra/Césped) */
+    --mc-green-light: #94c46f;   /* Verde claro de bloques (Césped) */
+    --mc-brown-border: #4d3e33;  /* Borde oscuro de tierra */
+    --mc-text-light: #E8E8E8;    /* Blanco pixelado (casi blanco) */
+    --mc-text-dark: #333333;
+    --mc-stone: #808080;         /* Gris de piedra */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* Aplicar la fuente pixelada a todo */
+    font-family: 'VT323', monospace; 
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+
+      /* CAMBIO CLAVE: Usar imagen de fondo */
+    background-image: url('https://wallpapercave.com/wp/wp6206419.png');
+    background-size: cover;          /* Asegura que cubra toda la pantalla */
+    background-position: center;     /* Centra la imagen */
+    background-attachment: fixed;    /* Fija la imagen al scroll */
+}
+
+/* ------------------ */
+/* Estilos del Contenedor Principal */
+/* ------------------ */
+
+.wrapper {
+    /* CORRECCIÓN: Color sólido gris/piedra para mejor contraste */
+    background: var(--mc-stone); 
+    border-radius: 4px;
+    padding: 25px;
+    /* Sombra estilo bloque */
+    box-shadow: 6px 6px 0 var(--mc-brown-border); 
+    border: 3px solid var(--mc-brown-border);
+    position: relative; 
+}
+
+/* ------------------ */
+/* Estilos de la Pantalla de Inicio / Fin (You Won) */
+/* ------------------ */
+
+.start-screen, .end-screen { 
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none; 
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; 
+    color: var(--mc-text-light);
+    text-align: center;
+    border-radius: 4px;
+    z-index: 10;
+    background: transparent;
+    box-shadow: none;
+}
+
+/* El resto del CSS queda igual, ya que está bien diseñado para el tema de bloques */
+.start-screen.active, .end-screen.active {
+    display: flex; 
+    z-index: 20; 
+}
+
+.end-screen h1 {
+    font-size: 60px;
+    margin-bottom: 10px;
+    font-weight: 400;
+    color: #FFF;
+    text-shadow: 4px 4px 0px var(--mc-green-dark); 
+    white-space: nowrap; 
+}
+
+.end-screen p {
+    font-size: 32px;
+    margin-bottom: 20px;
+    font-weight: 400;
+    color: var(--mc-text-light);
+}
+
+.end-screen p span {
+    background: none; 
+    border: none;    
+    padding: 0;      
+    color: var(--mc-text-light);
+    display: inline; 
+}
+
+.start-button {
+    padding: 15px 30px;
+    border: none;
+    border-radius: 4px;
+    background-color: var(--mc-green-light);
+    color: var(--mc-text-dark);
+    font-size: 28px;
+    font-weight: 400;
+    cursor: pointer;
+    border: 3px solid var(--mc-brown-border);
+    box-shadow: 4px 4px 0 var(--mc-brown-border); 
+    transition: all 0.1s ease-out;
+    white-space: nowrap; 
+}
+
+.start-button:hover {
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0 var(--mc-brown-border);
+}
+
+/* ------------------ */
+/* Estilos del Tablero y Panel de Información */
+/* ------------------ */
+
+.game-board {
+    display: none; 
+    flex-direction: column; 
+    align-items: center; 
+    background: inherit; 
+    border-radius: 4px;
+    padding: 0;
+    width: 450px; 
+    z-index: 5; 
+}
+
+.info-panel {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: 400;
+    color: var(--mc-text-light);
+    border-bottom: 2px dashed var(--mc-text-light);
+    padding-bottom: 10px;
+    background: inherit; 
+}
+
+.moves, .time {
+    padding: 5px 10px;
+    background: var(--mc-green-dark);
+    border-radius: 4px;
+    border: 2px solid var(--mc-brown-border); 
+    box-shadow: 2px 2px 0 var(--mc-brown-border);
+}
+
+/* ------------------ */
+/* Estilos de las Cartas */
+/* ------------------ */
+
+.cards {
+    height: 400px;
+    width: 400px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    list-style: none;
+    perspective: 1000px; 
+    gap: 5px;
+}
+
+.cards .card {
+    cursor: pointer;
+    position: relative; 
+    transform-style: preserve-3d; 
+    
+    height: calc(100% / 4 - 8px); 
+    width: calc(100% / 4 - 8px);  
+    margin: 0;
+
+    transition: transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+/* Animación de Volteo */
+.card.flip {
+    transform: rotateY(180deg);
+}
+
+/* ------------------ */
+/* Estilos de las Vistas (Front/Back) */
+/* ------------------ */
+
+.cards .card .view {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    padding: 5px;
+    border-radius: 4px;
+    background: var(--mc-green-light);
+    pointer-events: none;
+    backface-visibility: hidden;
+    
+    /* Sombra y borde de bloque */
+    box-shadow: 3px 3px 0 var(--mc-brown-border);
+    border: 2px solid var(--mc-brown-border);
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* AJUSTE PARA IMÁGENES: Asegura que la imagen quepa dentro de la carta */
+.cards .card .view img {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain; 
+    image-rendering: pixelated;
+}
+
+/* Vista frontal (Signo de Interrogación - reverso de la carta) */
+.card .front-view {
+    background: var(--mc-green-dark);
+    color: var(--mc-text-light); 
+    font-size: 35px;
+    text-shadow: none;
+}
+
+/* Vista trasera (la imagen) */
+.card .back-view {
+    transform: rotateY(-180deg);
+}
+
+/* ------------------ */
+/* Estilos del Botón Detener Juego */
+/* ------------------ */
+
+.stop-button {
+    margin-top: 20px; 
+    padding: 10px 20px;
+    border: 3px solid var(--mc-brown-border);
+    border-radius: 4px;
+    background-color: #ff5555;
+    color: var(--mc-text-dark);
+    font-size: 24px;
+    font-weight: 400;
+    cursor: pointer;
+    box-shadow: 4px 4px 0 var(--mc-brown-border);
+    transition: all 0.1s ease-out;
+}
+
+.stop-button:hover {
+    background-color: #e54444;
+    transform: translate(2px, 2px); 
+    box-shadow: 2px 2px 0 var(--mc-brown-border);
+/* 🌟 Pantalla de Victoria - Estilo Minecraft */
+.end-screen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  z-index: 20;
+
+}
+
+/* Contenedor del cuadro central */
+.end-screen::before {
+  content: "";
+  position: absolute;
+  width: 380px;
+  height: 250px;
+  background: var(--mc-green-light);
+  border: 3px solid var(--mc-brown-border);
+  box-shadow: 6px 6px 0 var(--mc-brown-border);
+  border-radius: 6px;
+  z-index: -1;
+}
+
+/* Texto principal */
+.end-screen h1 {
+  font-size: 64px;
+  color: #fff;
+  margin-bottom: 20px;
+  text-shadow: 4px 4px 0 var(--mc-brown-border);
+}
+
+/* Estadísticas */
+.end-screen p {
+  font-size: 28px;
+  color: var(--mc-text-dark);
+  margin: 6px 0;
+}
+
+.end-screen p span {
+  color: var(--mc-text-dark);
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 4px;
+  padding: 2px 8px;
+}
+
+/* Botón estilo bloque */
+.start-button {
+  margin-top: 25px;
+  padding: 12px 28px;
+  font-size: 28px;
+  background-color: var(--mc-green-light);
+  border: 3px solid var(--mc-brown-border);
+  box-shadow: 4px 4px 0 var(--mc-brown-border);
+  color: var(--mc-text-dark);
+  cursor: pointer;
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+.start-button:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 var(--mc-brown-border);
+}
+
+}

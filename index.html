@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+<head>
+
+<!-- Configuración estándar y enlaces -->
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Juego de Memoria - 16 Cartas</title>
+
+
+<!-- Enlace a tu archivo de estilos CSS -->
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+
+
+<body>
+
+
+<div class="wrapper">
+
+
+<!-- 1. Pantalla de Inicio (Visible al cargar) -->
+
+<div class="start-screen active">
+
+<button class="start-button" data-action="start">Start Game</button>
+
+</div>
+
+
+<!-- 🔑 NUEVO: Pantalla de Victoria (Oculta al inicio) -->
+
+<div class="end-screen">
+
+<h1>You Won!</h1>
+
+<p>Moves: <span id="final-moves-count">0</span></p>
+
+<p>Time: <span id="final-time-count">00:00</span></p>
+
+<button class="start-button" data-action="restart">Start New Game</button>
+
+</div>
+
+
+
+
+
+<!-- 2. Tablero del Juego (Oculto al inicio por CSS) -->
+
+<div class="game-board">
+
+
+<!-- Panel de Información (Movimientos y Tiempo) -->
+
+<div class="info-panel">
+
+<div class="moves">Moves: <span id="moves-count">0</span></div>
+
+<div class="time">Time: <span id="time-count">00:00</span></div>
+
+</div>
+
+
+
+<ul class="cards">
+
+<!-- --------------------------------------- -->
+
+<!-- 8 PARES (16 CARTAS TOTALES) -->
+
+<!-- ... Las 16 cartas <li> van aquí ... -->
+
+<!-- --------------------------------------- -->
+
+
+
+<!-- PAR 1: Poppy -->
+
+<li class="card" data-image="Poppy_JE8_BE2">
+
+<div class="view front-view">?</div>
+
+<div class="view back-view"><img src="https://minecraft.wiki/images/Poppy_JE8_BE2.png?39ac9" alt="img-1"></div>
+
+</li>
+
+<li class="card" data-image="Poppy_JE8_BE2">
+
+<div class="view front-view">?</div>
+
+<div class="view back-view"><img src="https://minecraft.wiki/images/Poppy_JE8_BE2.png?39ac9" alt="img-1"></div>
+
+</li>
+
+
+
+<!-- PAR 2: Dandelion -->
+
+<li class="card" data-image="Dandelion_JE8_BE2">
+
+<div class="view front-view">?</div>
+
+<div class="view back-view"><img src="https://minecraft.wiki/images/Dandelion_JE8_BE2.png?5cdb9" alt="img-2"></div>
+
+</li>
+
+<li class="card" data-image="Dandelion_JE8_BE2">
+
+<div class="view front-view">?</div>
+
+<div class="view back-view"><img src="https://minecraft.wiki/images/Dandelion_JE8_BE2.png?5cdb9" alt="img-2"></div>
+
+</li>
+
+
+
+<!-- PAR 3: Blue Orchid -->
+
+<li class="card" data-image="Blue_Orchid_JE7_BE2">
+
+<div class="view front-view">?</div>
+
+<div class="view back-view"><img src="https://minecraft.wiki/images/Blue_Orchid_JE7_BE2.png?f8a0f" alt="img-3"></div>
+
+
+</li>
+
+<li class="card" data-image="Blue_Orchid_JE7_BE2">
+
+<div class="view front-view">?</div>
+
+<div class="view back-view"><img src="https://minecraft.wiki/images/Blue_Orchid_JE7_BE2.png?f8a0f" alt="img-3"></div>
+
+</li>
+
+
+
+<!-- PAR 4: Oxeye Daisy -->
+
+<li class="card" data-image="Oxeye_Daisy_JE7_BE2">
+
+<div class="view front-view">?</div>
+
+<div class="view back-view"><img src="https://minecraft.wiki/images/Oxeye_Daisy_JE7_BE2.png?5d367" alt="img-4"></div>
+
+</li>
+
+<li class="card" data-image="Oxeye_Daisy_JE7_BE2">
+
+<div class="view front-view">?</div>
+
+<div class="view back-view"><img src="https://minecraft.wiki/images/Oxeye_Daisy_JE7_BE2.png?5d367" alt="img-4"></div>
+
+</li>
+
+
+<!-- PAR 5: Pink Tulip -->
+
+<li class="card" data-image="Pink_Tulip_JE7_BE2">
+
+<div class="view front-view">?</div>
+
+<div class="view back-view"><img src="https://minecraft.wiki/images/Pink_Tulip_JE7_BE2.png?7143c" alt="img-5"></div>
+
+</li>
+
+<li class="card" data-image="Pink_Tulip_JE7_BE2">
+
+<div class="view front-view">?</div>
+
+<div class="view back-view"><img src="https://minecraft.wiki/images/Pink_Tulip_JE7_BE2.png?7143c" alt="img-5"></div>
+
+</li>
+
+
+
+<!-- PAR 6: Azure Bluet -->
+
+<li class="card" data-image="Azure_Bluet_JE7_BE2">
+
+<div class="view front-view">?</div>
+
+<div class="view back-view"><img src="https://minecraft.wiki/images/Azure_Bluet_JE7_BE2.png?5b581" alt="img-6"></div>
+
+</li>
+
+<li class="card" data-image="Azure_Bluet_JE7_BE2">
+
+<div class="view front-view">?</div>
+
+<div class="view back-view"><img src="https://minecraft.wiki/images/Azure_Bluet_JE7_BE2.png?5b581" alt="img-6"></div>
+
+</li>
+
+
+<!-- PAR 7: Allium -->
+
+<li class="card" data-image="Allium_JE7_BE2">
+
+<div class="view front-view">?</div>
+
+<div class="view back-view"><img src="https://minecraft.wiki/images/Allium_JE7_BE2.png?c421f" alt="img-7"></div>
+
+</li>
+
+<li class="card" data-image="Allium_JE7_BE2">
+
+<div class="view front-view">?</div>
+
+<div class="view back-view"><img src="https://minecraft.wiki/images/Allium_JE7_BE2.png?c421f" alt="img-7"></div>
+
+</li>
+
+
+<!-- PAR 8: Cornflower -->
+
+<li class="card" data-image="Cornflower_JE1_BE1">
+
+<div class="view front-view">?</div>
+
+<div class="view back-view"><img src="https://minecraft.wiki/images/Cornflower_JE1_BE1.png?d9019" alt="img-8"></div>
+
+</li>
+
+<li class="card" data-image="Cornflower_JE1_BE1">
+
+<div class="view front-view">?</div>
+
+<div class="view back-view"><img src="https://minecraft.wiki/images/Cornflower_JE1_BE1.png?d9019" alt="img-8"></div>
+
+</li>
+
+
+</ul>
+
+
+<!-- Botón de Detener -->
+
+<button class="stop-button">Stop Game</button>
+
+</div>
+
+
+</div>
+
+
+<!-- Enlace al JavaScript (DEBE ir al final) -->
+
+<script src="app.js"></script>
+
+</body>
+
+</html>
